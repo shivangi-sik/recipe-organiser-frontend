@@ -54,7 +54,13 @@ const formSubmitHandler = async (e) => {
 
         const data = await response.json()
 
-        console.log("Reipe Added", data)
+        setNewRecipe({
+          recipeName: "",
+          cuisineType: "",
+          image: "",
+          ingredients: [],
+          instructions: []
+      })
       }
       catch(error){
         console.log(error)
@@ -73,15 +79,15 @@ const formSubmitHandler = async (e) => {
 <form onSubmit={formSubmitHandler} >
 <div>
     <label htmlFor="recipeName">Name:</label><br/>
-    <input id="recipeName" type="text" onChange={inputChangeHandler} required/>
+    <input id="recipeName" type="text" onChange={inputChangeHandler} required value={newRecipe.recipeName}/>
 </div><br/>
 <div>
     <label htmlFor="cuisineType">Cuisine Type</label><br/>
-    <input id="cuisineType" type="text" onChange={inputChangeHandler} required/>
+    <input id="cuisineType" type="text" onChange={inputChangeHandler} required value={newRecipe.cuisineType}/>
 </div><br/>
 <div>
     <label htmlFor="image">Image Link</label><br/>
-    <input id="image" type="url" onChange={inputChangeHandler}/>
+    <input id="image" type="url" onChange={inputChangeHandler} value={newRecipe.image}/>
 </div><br/>
 <div>
     <label>Ingredients:</label><br/>
@@ -91,7 +97,7 @@ const formSubmitHandler = async (e) => {
 </div><br/>
 <div>
     <label htmlFor="instructions">Instructions:</label><br/>
-    <input id="instructions" type="text" onChange={instructionsHandler} required/> <small className="text-secondary">(Put a "." after each instruction)</small>
+    <input id="instructions" type="text" onChange={instructionsHandler} required value={newRecipe.instructions}/> <small className="text-secondary">(Put a "." after each instruction)</small>
 </div><br/>
  <button className="btn btn-success" type="submit">Sumit</button>
 </form>
